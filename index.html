@@ -411,105 +411,6 @@
         .bar:nth-child(9) { height: 65%; animation-delay: 0.8s; }
         .bar:nth-child(10) { height: 35%; animation-delay: 0.9s; }
 
-        /* Botão flutuante de música */
-        .music-player-btn {
-            position: fixed;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1000;
-            background: linear-gradient(135deg, #2AABEE 0%, #ff6b35 100%);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            transition: all 0.3s ease;
-            animation: pulseMusic 2s infinite;
-        }
-
-        .music-player-btn:hover {
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 8px 25px rgba(42, 171, 238, 0.6);
-        }
-
-        .music-player-btn.playing {
-            background: linear-gradient(135deg, #ff6b35 0%, #2AABEE 100%);
-        }
-
-        .music-player-btn .tooltip {
-            position: absolute;
-            right: -170px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .music-player-btn:hover .tooltip {
-            opacity: 1;
-        }
-
-        /* Menu de controle de música */
-        .music-control-menu {
-            position: fixed;
-            left: 90px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.9);
-            border-radius: 10px;
-            padding: 15px;
-            z-index: 1000;
-            display: none;
-            flex-direction: column;
-            gap: 10px;
-            border: 1px solid rgba(42, 171, 238, 0.3);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .music-control-menu.show {
-            display: flex;
-        }
-
-        .music-control-btn {
-            background: rgba(42, 171, 238, 0.2);
-            border: 1px solid rgba(42, 171, 238, 0.3);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            min-width: 120px;
-        }
-
-        .music-control-btn:hover {
-            background: rgba(42, 171, 238, 0.4);
-            transform: translateX(5px);
-        }
-
-        .music-control-btn.stop {
-            background: rgba(255, 107, 53, 0.2);
-            border-color: rgba(255, 107, 53, 0.3);
-        }
-
-        .music-control-btn.stop:hover {
-            background: rgba(255, 107, 53, 0.4);
-        }
-
         /* Animações */
         @keyframes pulse {
             0% { transform: scale(1); }
@@ -549,9 +450,22 @@
             50% { box-shadow: 0 15px 50px rgba(42, 171, 238, 0.8); }
         }
 
-        @keyframes pulseMusic {
-            0%, 100% { box-shadow: 0 5px 20px rgba(42, 171, 238, 0.4); }
-            50% { box-shadow: 0 5px 25px rgba(42, 171, 238, 0.8); }
+        /* Efeito de digitação */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #2AABEE;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #2AABEE; }
         }
 
         /* Responsividade */
@@ -614,71 +528,12 @@
             .image-subtitle {
                 font-size: 0.9rem;
             }
-
-            .music-player-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-                left: 10px;
-            }
-
-            .music-player-btn .tooltip {
-                display: none;
-            }
-
-            .music-control-menu {
-                left: 70px;
-                padding: 10px;
-            }
-
-            .music-control-btn {
-                min-width: 100px;
-                padding: 8px 12px;
-                font-size: 14px;
-            }
-        }
-
-        /* Efeito de digitação */
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid #2AABEE;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #2AABEE; }
         }
     </style>
 </head>
 <body>
     <!-- Fundo animado com Three.js -->
     <div id="canvas-bg"></div>
-
-    <!-- Botão flutuante de música -->
-    <button class="music-player-btn" id="musicPlayerBtn">
-        <i class="fas fa-play" id="musicIcon"></i>
-        <div class="tooltip">Clique para tocar música</div>
-    </button>
-
-    <!-- Menu de controle de música -->
-    <div class="music-control-menu" id="musicControlMenu">
-        <button class="music-control-btn" id="playBtn">
-            <i class="fas fa-play"></i> Play
-        </button>
-        <button class="music-control-btn" id="pauseBtn">
-            <i class="fas fa-pause"></i> Pausar
-        </button>
-        <button class="music-control-btn stop" id="stopBtn">
-            <i class="fas fa-stop"></i> Stop
-        </button>
-    </div>
 
     <!-- Elementos visuais de DJ -->
     <div class="dj-elements">
@@ -815,8 +670,6 @@
         let hoverAudioPlaying = false;
         let hoverAudioTimeout = null;
         let hoverAudioDuration = 29;
-        let isMusicPlaying = false;
-        let musicControlMenuVisible = false;
         
         // Observer para verificar se a imagem está visível
         let imageObserver = null;
@@ -961,118 +814,6 @@
             imageObserver.observe(imageContainer);
         }
         
-        // Funções de controle de música
-        function playMusic() {
-            if (!audioActivated) {
-                activateAudio();
-            }
-            
-            const music = document.getElementById('backgroundMusic');
-            const musicBtn = document.getElementById('musicPlayerBtn');
-            const musicIcon = document.getElementById('musicIcon');
-            
-            if (!music || !audioActivated) return;
-            
-            try {
-                const playPromise = music.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        isMusicPlaying = true;
-                        musicBtn.classList.add('playing');
-                        musicIcon.classList.remove('fa-play');
-                        musicIcon.classList.add('fa-pause');
-                        updateMenuButtons();
-                    }).catch(e => {
-                        console.log("Erro ao tocar música:", e);
-                    });
-                }
-            } catch (e) {
-                console.log("Erro ao controlar música:", e);
-            }
-        }
-        
-        function pauseMusic() {
-            const music = document.getElementById('backgroundMusic');
-            const musicBtn = document.getElementById('musicPlayerBtn');
-            const musicIcon = document.getElementById('musicIcon');
-            
-            if (!music) return;
-            
-            try {
-                music.pause();
-                isMusicPlaying = false;
-                musicBtn.classList.remove('playing');
-                musicIcon.classList.remove('fa-pause');
-                musicIcon.classList.add('fa-play');
-                updateMenuButtons();
-            } catch (e) {
-                console.log("Erro ao pausar música:", e);
-            }
-        }
-        
-        function stopMusic() {
-            const music = document.getElementById('backgroundMusic');
-            const musicBtn = document.getElementById('musicPlayerBtn');
-            const musicIcon = document.getElementById('musicIcon');
-            
-            if (!music) return;
-            
-            try {
-                music.pause();
-                music.currentTime = 0;
-                isMusicPlaying = false;
-                musicBtn.classList.remove('playing');
-                musicIcon.classList.remove('fa-pause');
-                musicIcon.classList.add('fa-play');
-                updateMenuButtons();
-            } catch (e) {
-                console.log("Erro ao parar música:", e);
-            }
-        }
-        
-        function toggleMusic() {
-            if (isMusicPlaying) {
-                pauseMusic();
-            } else {
-                playMusic();
-            }
-        }
-        
-        function updateMenuButtons() {
-            const playBtn = document.getElementById('playBtn');
-            const pauseBtn = document.getElementById('pauseBtn');
-            const stopBtn = document.getElementById('stopBtn');
-            
-            if (isMusicPlaying) {
-                playBtn.disabled = true;
-                pauseBtn.disabled = false;
-                stopBtn.disabled = false;
-                playBtn.style.opacity = '0.5';
-                pauseBtn.style.opacity = '1';
-                stopBtn.style.opacity = '1';
-            } else {
-                playBtn.disabled = false;
-                pauseBtn.disabled = true;
-                stopBtn.disabled = true;
-                playBtn.style.opacity = '1';
-                pauseBtn.style.opacity = '0.5';
-                stopBtn.style.opacity = '0.5';
-            }
-        }
-        
-        function toggleMusicControlMenu() {
-            const menu = document.getElementById('musicControlMenu');
-            musicControlMenuVisible = !musicControlMenuVisible;
-            
-            if (musicControlMenuVisible) {
-                menu.classList.add('show');
-                updateMenuButtons();
-            } else {
-                menu.classList.remove('show');
-            }
-        }
-        
         // Configuração do fundo animado com Three.js
         function initBackground() {
             const canvas = document.getElementById('canvas-bg');
@@ -1176,33 +917,6 @@
                 }, 150);
             });
             
-            // Configurar botão de música principal
-            const musicPlayerBtn = document.getElementById('musicPlayerBtn');
-            musicPlayerBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                toggleMusic();
-            });
-            
-            // Configurar botões do menu de controle
-            document.getElementById('playBtn').addEventListener('click', playMusic);
-            document.getElementById('pauseBtn').addEventListener('click', pauseMusic);
-            document.getElementById('stopBtn').addEventListener('click', stopMusic);
-            
-            // Mostrar/esconder menu ao passar mouse no botão principal
-            musicPlayerBtn.addEventListener('mouseenter', function() {
-                toggleMusicControlMenu();
-            });
-            
-            // Esconder menu quando mouse sair da área
-            const musicControlMenu = document.getElementById('musicControlMenu');
-            musicControlMenu.addEventListener('mouseleave', function() {
-                setTimeout(() => {
-                    if (musicControlMenuVisible) {
-                        toggleMusicControlMenu();
-                    }
-                }, 300);
-            });
-            
             // Configurar botão de compra
             document.getElementById('buy-button').addEventListener('click', function() {
                 fbq('track', 'Purchase', {value: 10.00, currency: 'BRL'});
@@ -1215,7 +929,7 @@
             // Verificar se a imagem carregou
             const djImage = document.getElementById('dj-image');
             djImage.onerror = function() {
-                this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyYWFiZWUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZjZiMzUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPlNVUEVSIEZKIDIwMjY8L3RleHQ+PC9zdmc+';
+                this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyYWFiZWUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZjZiMzUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2lplz0iMzAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPlNVUEVSIEZKIDIwMjY8L3RleHQ+PC9zdmc+';
             };
             
             // Efeito de digitação
@@ -1240,11 +954,6 @@
                 });
             }
             
-            if (backgroundMusic) {
-                backgroundMusic.load();
-                backgroundMusic.volume = 0.7;
-            }
-            
             // Configurar erro de áudio
             if (hoverAudio) {
                 hoverAudio.addEventListener('error', function() {
@@ -1264,26 +973,11 @@
                     activateAudio();
                 }
             }, { once: true });
-            
-            // Inicializar estado dos botões
-            updateMenuButtons();
         });
         
         // Ativar áudio quando a página estiver totalmente carregada
         window.addEventListener('load', function() {
             setTimeout(activateAudio, 500);
-        });
-        
-        // Fechar menu de controle ao clicar fora
-        document.addEventListener('click', function(e) {
-            const menu = document.getElementById('musicControlMenu');
-            const btn = document.getElementById('musicPlayerBtn');
-            
-            if (musicControlMenuVisible && 
-                !menu.contains(e.target) && 
-                !btn.contains(e.target)) {
-                toggleMusicControlMenu();
-            }
         });
     </script>
 </body>
