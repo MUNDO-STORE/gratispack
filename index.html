@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super DJ Profissional 2026 - R$10,00</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '25652670291043537');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=25652670291043537&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: #0a0a1a;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .telegram-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .telegram-header {
+            background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
+            border-radius: 15px 15px 0 0;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 8px 30px rgba(42, 171, 238, 0.3);
+            margin-bottom: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .telegram-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            transform: rotate(15deg);
+            opacity: 0.1;
+        }
+
+        .header-icon {
+            font-size: 50px;
+            margin-right: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-text p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .price-tag {
+            background: #ff6b35;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: absolute;
+            right: 25px;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .telegram-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 0 0 15px 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .folder-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .folder {
+            background: rgba(42, 171, 238, 0.1);
+            border-left: 5px solid #2AABEE;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .folder:hover {
+            transform: translateY(-5px);
+            background: rgba(42, 171, 238, 0.2);
+            box-shadow: 0 10px 20px rgba(42, 171, 238, 0.2);
+        }
+
+        .folder::before {
+            content: '\f07b';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 1.5rem;
+            opacity: 0.2;
+        }
+
+        .folder h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #2AABEE;
+        }
+
+        .folder p {
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background: rgba(255, 107, 53, 0.1);
+            border-left: 5px solid #ff6b35;
+        }
+
+        .highlight h3 {
+            color: #ff6b35;
+        }
+
+        .features-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+            justify-content: center;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature i {
+            color: #2AABEE;
+        }
+
+        .purchase-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .purchase-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #2AABEE, #ff6b35, #2AABEE);
+            background-size: 200% 100%;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        .purchase-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #2AABEE, #ff6b35);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .price-big {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+            background: linear-gradient(90deg, #2AABEE, #ff6b35);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(42, 171, 238, 0.3);
+        }
+
+        .buy-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #2AABEE 0%, #ff6b35 100%);
+            color: white;
+            padding: 20px 50px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(42, 171, 238, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: buttonPulse 2s infinite;
+        }
+
+        .buy-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(42, 171, 238, 0.6);
+        }
+
+        .buy-button:active {
+            transform: scale(0.98);
+        }
+
+        .buy-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .buy-button:hover::after {
+            left: 100%;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Elementos visuais de DJ */
+        .dj-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .vinyl {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #222 30%, #000 70%);
+            box-shadow: 0 0 30px rgba(42, 171, 238, 0.5);
+            top: 20%;
+            left: 10%;
+            animation: spin 20s linear infinite;
+        }
+
+        .vinyl::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: #ff6b35;
+            border-radius: 50%;
+            border: 5px solid #fff;
+        }
+
+        .equalizer {
+            position: absolute;
+            bottom: 20%;
+            right: 10%;
+            width: 200px;
+            height: 100px;
+            display: flex;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .bar {
+            width: 10px;
+            background: linear-gradient(to top, #2AABEE, #ff6b35);
+            border-radius: 5px 5px 0 0;
+            animation: equalizer 1.5s ease-in-out infinite;
+        }
+
+        .bar:nth-child(1) { height: 30%; animation-delay: 0s; }
+        .bar:nth-child(2) { height: 60%; animation-delay: 0.1s; }
+        .bar:nth-child(3) { height: 90%; animation-delay: 0.2s; }
+        .bar:nth-child(4) { height: 70%; animation-delay: 0.3s; }
+        .bar:nth-child(5) { height: 40%; animation-delay: 0.4s; }
+        .bar:nth-child(6) { height: 80%; animation-delay: 0.5s; }
+        .bar:nth-child(7) { height: 50%; animation-delay: 0.6s; }
+        .bar:nth-child(8) { height: 95%; animation-delay: 0.7s; }
+        .bar:nth-child(9) { height: 65%; animation-delay: 0.8s; }
+        .bar:nth-child(10) { height: 35%; animation-delay: 0.9s; }
+
+        /* Animações */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes buttonPulse {
+            0% { box-shadow: 0 10px 30px rgba(42, 171, 238, 0.4); }
+            50% { box-shadow: 0 10px 40px rgba(42, 171, 238, 0.7); }
+            100% { box-shadow: 0 10px 30px rgba(42, 171, 238, 0.4); }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes equalizer {
+            0%, 100% { height: 30%; }
+            50% { height: 100%; }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .telegram-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 15px;
+            }
+
+            .header-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+                font-size: 40px;
+            }
+
+            .header-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .price-tag {
+                position: relative;
+                right: auto;
+                margin-top: 15px;
+                display: inline-block;
+            }
+
+            .folder-container {
+                grid-template-columns: 1fr;
+            }
+
+            .price-big {
+                font-size: 2.8rem;
+            }
+
+            .buy-button {
+                padding: 18px 30px;
+                font-size: 1.5rem;
+                width: 100%;
+            }
+
+            .vinyl {
+                width: 150px;
+                height: 150px;
+                top: 10%;
+                left: 5%;
+            }
+
+            .equalizer {
+                width: 150px;
+                height: 80px;
+                bottom: 10%;
+                right: 5%;
+            }
+        }
+
+        /* Efeito de digitação */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #2AABEE;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #2AABEE; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fundo animado com Three.js -->
+    <div id="canvas-bg"></div>
+
+    <!-- Elementos visuais de DJ -->
+    <div class="dj-elements">
+        <div class="vinyl"></div>
+        <div class="equalizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <div class="telegram-container">
+        <!-- Cabeçalho no estilo Telegram -->
+        <div class="telegram-header">
+            <div class="header-icon">
+                <i class="fab fa-telegram"></i>
+            </div>
+            <div class="header-text">
+                <h1>Super DJ Profissional 2026</h1>
+                <p>Biblioteca completa para DJs dentro do Telegram</p>
+            </div>
+            <div class="price-tag">
+                R$10,00
+            </div>
+        </div>
+
+        <!-- Conteúdo principal -->
+        <div class="telegram-content">
+            <div class="folder-container">
+                <!-- Pastas no estilo Telegram -->
+                <div class="folder">
+                    <h3>+7TB Músicas (Todos os Estilos)</h3>
+                    <p>Coleção completa com mais de 7TB de músicas de todos os estilos: pop, rock, eletrônica, hip-hop, sertanejo, funk, e muito mais.</p>
+                </div>
+
+                <div class="folder">
+                    <h3>+2TB Efeitos Sonoros (SFX)</h3>
+                    <p>Efeitos sonoros profissionais para suas mixagens: sirenes, risadas, aplausos, transições e efeitos especiais.</p>
+                </div>
+
+                <div class="folder highlight">
+                    <h3>PACK GOSPEL PROFISSIONAL</h3>
+                    <p>Seleção especial com as melhores músicas gospel, louvores e adoração para eventos religiosos.</p>
+                </div>
+
+                <div class="folder">
+                    <h3>DJ RETRO - DISCOTECAS</h3>
+                    <p>Flashback, Eurodance e sucessos das décadas de 70, 80, 90 e 2000 para animar qualquer festa.</p>
+                </div>
+
+                <div class="folder">
+                    <h3>Playlists Prontas</h3>
+                    <p>Playlists organizadas por ocasião: casamento, formatura, academia, festas infantis, aniversários e muito mais.</p>
+                </div>
+
+                <div class="folder">
+                    <h3>Videoclipes + Softwares</h3>
+                    <p>Videoclipes para VJing e softwares profissionais para DJs (Virtual DJ, Serato, Traktor e outros).</p>
+                </div>
+            </div>
+
+            <!-- Lista de recursos -->
+            <div class="features-list">
+                <div class="feature">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>ATUALIZAÇÕES (TUDO QUE CONSEGUIMOS DE NOVO JOGAMOS NOS GRUPO)</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-cloud"></i>
+                    <span>Material 100% no Telegram</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Pagamento Único - Sem Mensalidades</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Acesso Imediato no App</span>
+                </div>
+            </div>
+
+            <!-- Seção de compra -->
+            <div class="purchase-section">
+                <h2 class="purchase-title">ACESSO VITALÍCIO AO PACOTE COMPLETO</h2>
+                <div class="price-big">R$ 10,00</div>
+                <p style="margin-bottom: 20px; font-size: 1.2rem;">Pagamento único • Acesso imediato • Sem renovação</p>
+                
+                <a href="https://mundodj.erby.site/product/17678367624464724589600001669" class="buy-button" id="buy-button">
+                    <i class="fas fa-shopping-cart"></i> CLIQUE AQUI PARA COMPRAR
+                </a>
+                
+                <p style="margin-top: 20px; opacity: 0.8;">Você será direcionado para a página de pagamento segura</p>
+            </div>
+
+            <!-- Rodapé -->
+            <div class="footer-note">
+                <p>© 2026 Super DJ Profissional. O acesso é fornecido através de grupos dentro da plataforma.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuração do fundo animado com Three.js - Versão DJ Profissional
+        function initBackground() {
+            const canvas = document.getElementById('canvas-bg');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ 
+                alpha: true, 
+                antialias: true,
+                powerPreference: "high-performance"
+            });
+            
+            renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            canvas.appendChild(renderer.domElement);
+            
+            // Criar partículas com cores de DJ (azuis, roxos, laranjas)
+            const particlesGeometry = new THREE.BufferGeometry();
+            const count = 3000;
+            
+            const positions = new Float32Array(count * 3);
+            const colors = new Float32Array(count * 3);
+            const sizes = new Float32Array(count);
+            
+            for (let i = 0; i < count * 3; i += 3) {
+                // Posições em formato de onda/equalizador
+                const radius = 20 + Math.random() * 30;
+                const angle = Math.random() * Math.PI * 2;
+                const height = (Math.random() - 0.5) * 50;
+                
+                positions[i] = Math.cos(angle) * radius;
+                positions[i + 1] = height;
+                positions[i + 2] = Math.sin(angle) * radius;
+                
+                // Cores do tema DJ (azuis, roxos, laranjas)
+                const colorChoice = Math.random();
+                if (colorChoice < 0.4) {
+                    // Azuis (tema Telegram/DJ)
+                    colors[i] = 0.2 + Math.random() * 0.3; // R
+                    colors[i + 1] = 0.5 + Math.random() * 0.5; // G
+                    colors[i + 2] = 0.8 + Math.random() * 0.2; // B
+                } else if (colorChoice < 0.7) {
+                    // Roxos (efeitos de luz)
+                    colors[i] = 0.5 + Math.random() * 0.3; // R
+                    colors[i + 1] = 0.2 + Math.random() * 0.3; // G
+                    colors[i + 2] = 0.7 + Math.random() * 0.3; // B
+                } else {
+                    // Laranjas (destaque)
+                    colors[i] = 1.0; // R
+                    colors[i + 1] = 0.4 + Math.random() * 0.3; // G
+                    colors[i + 2] = 0.2; // B
+                }
+                
+                sizes[i / 3] = Math.random() * 0.2 + 0.05;
+            }
+            
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            particlesGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+            
+            // Material das partículas
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.15,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true,
+                blending: THREE.AdditiveBlending
+            });
+            
+            const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particles);
+            
+            // Adicionar luzes
+            const ambientLight = new THREE.AmbientLight(0x222222);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0x2AABEE, 0.5);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+            
+            const pointLight = new THREE.PointLight(0xff6b35, 0.5, 50);
+            pointLight.position.set(-5, -5, 5);
+            scene.add(pointLight);
+            
+            camera.position.z = 30;
+            
+            // Variáveis para animação
+            let time = 0;
+            
+            // Animar as partículas
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                time += 0.01;
+                
+                // Movimento ondulatório para as partículas (efeito de música/equalizador)
+                const positions = particles.geometry.attributes.position.array;
+                const originalPositions = particles.geometry.attributes.position.originalPositions;
+                
+                // Salvar posições originais se não existirem
+                if (!originalPositions) {
+                    particles.geometry.attributes.position.originalPositions = [...positions];
+                }
+                
+                // Aplicar movimento ondulatório
+                for (let i = 0; i < positions.length; i += 3) {
+                    const originalY = particles.geometry.attributes.position.originalPositions[i + 1];
+                    positions[i + 1] = originalY + Math.sin(time + i * 0.01) * 2;
+                }
+                
+                particles.geometry.attributes.position.needsUpdate = true;
+                
+                // Rotação suave
+                particles.rotation.x = time * 0.05;
+                particles.rotation.y = time * 0.03;
+                
+                // Pulsação das partículas
+                particlesMaterial.opacity = 0.6 + Math.sin(time * 2) * 0.2;
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            // Redimensionar
+            window.addEventListener('resize', function() {
+                camera.aspect = canvas.offsetWidth / canvas.offsetHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+            });
+        }
+        
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            initBackground();
+            
+            // Adicionar efeito de clique no botão
+            document.getElementById('buy-button').addEventListener('click', function() {
+                // Track Facebook Pixel conversion
+                fbq('track', 'Purchase', {value: 10.00, currency: 'BRL'});
+                
+                // Adicionar efeito visual
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> REDIRECIONANDO...';
+                this.style.background = 'linear-gradient(135deg, #ff6b35 0%, #2AABEE 100%)';
+                
+                // Simular tempo de carregamento antes do redirecionamento
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-check"></i> COMPRA REALIZADA!';
+                }, 1000);
+            });
+            
+            // Efeito de digitação no título
+            const title = document.querySelector('.header-text h1');
+            const originalText = title.textContent;
+            title.textContent = '';
+            title.classList.add('typewriter');
+            
+            setTimeout(() => {
+                title.textContent = originalText;
+                title.classList.remove('typewriter');
+            }, 4000);
+            
+            // Adicionar efeito de hover nas pastas
+            const folders = document.querySelectorAll('.folder');
+            folders.forEach(folder => {
+                folder.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('h3');
+                    if (icon) {
+                        icon.style.transform = 'translateX(5px)';
+                        icon.style.transition = 'transform 0.3s ease';
+                    }
+                });
+                
+                folder.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('h3');
+                    if (icon) {
+                        icon.style.transform = 'translateX(0)';
+                    }
+                });
+            });
+            
+            // Adicionar efeito sonoro sutil ao passar o mouse no botão
+            const buyButton = document.getElementById('buy-button');
+            buyButton.addEventListener('mouseenter', function() {
+                // Criar contexto de áudio para efeito sonoro
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.value = 523.25; // Nota C5
+                    oscillator.type = 'sine';
+                    
+                    gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+                    gainNode.gain.linearRampToValueAtTime(0.05, audioContext.currentTime + 0.1);
+                    gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.2);
+                    
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 0.2);
+                } catch (e) {
+                    // Silenciosamente ignora se o áudio não estiver disponível
+                }
+            });
+        });
+    </script>
+</body>
+</html>
