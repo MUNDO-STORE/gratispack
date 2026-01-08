@@ -166,83 +166,12 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
-        /* Sistema de Notificações de Compradores - MENOR */
-        .notification-container {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            width: 260px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            pointer-events: none;
-        }
-
-        .notification {
-            background: linear-gradient(135deg, rgba(42, 171, 238, 0.95), rgba(255, 107, 53, 0.95));
-            border-radius: 8px;
-            padding: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            border-left: 3px solid #ff6b35;
-            animation: slideInRight 0.5s ease-out, fadeOut 0.5s ease-out 25s forwards;
-            transform: translateX(400px);
-            opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: auto;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        .notification-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            flex-shrink: 0;
-        }
-
-        .notification-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .notification-content {
-            flex: 1;
-        }
-
-        .notification-name {
-            font-weight: bold;
-            font-size: 0.95rem;
-            margin-bottom: 2px;
-        }
-
-        .notification-text {
-            font-size: 0.8rem;
+        .image-subtitle {
+            font-size: 1.1rem;
             opacity: 0.9;
-            line-height: 1.3;
-        }
-
-        .notification-time {
-            font-size: 0.7rem;
-            opacity: 0.7;
-            margin-top: 2px;
-        }
-
-        .notification-icon {
-            color: white;
-            font-size: 1rem;
         }
 
         .folder-container {
@@ -407,162 +336,6 @@
             left: 100%;
         }
 
-        /* Seção de Depoimentos */
-        .testimonials-section {
-            margin-top: 60px;
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            border: 1px solid rgba(42, 171, 238, 0.2);
-        }
-
-        .testimonials-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            background: linear-gradient(90deg, #2AABEE, #ff6b35);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .testimonials-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 25px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.5s ease forwards;
-        }
-
-        .testimonial-card.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .testimonial-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .testimonial-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid rgba(42, 171, 238, 0.5);
-            flex-shrink: 0;
-        }
-
-        .testimonial-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .testimonial-info {
-            flex: 1;
-        }
-
-        .testimonial-name {
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .testimonial-platform {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .testimonial-platform i {
-            color: #2AABEE;
-        }
-
-        .facebook-icon {
-            color: #1877F2 !important;
-        }
-
-        .instagram-icon {
-            color: #E4405F !important;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            line-height: 1.6;
-            opacity: 0.9;
-            border-left: 3px solid #ff6b35;
-            padding-left: 15px;
-        }
-
-        .testimonial-time {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            margin-top: 10px;
-            text-align: right;
-        }
-
-        .testimonials-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .testimonial-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .testimonial-dot.active {
-            background: #2AABEE;
-            transform: scale(1.2);
-        }
-
-        /* Indicador de tempo para mudança de depoimentos */
-        .testimonial-timer {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        .timer-text {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .timer-icon {
-            color: #2AABEE;
-        }
-
-        .timer-count {
-            font-weight: bold;
-            color: #ff6b35;
-            min-width: 25px;
-            display: inline-block;
-            text-align: center;
-        }
-
         .footer-note {
             text-align: center;
             margin-top: 40px;
@@ -676,37 +449,6 @@
             50% { box-shadow: 0 15px 50px rgba(42, 171, 238, 0.8); }
         }
 
-        @keyframes slideInRight {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* Responsividade */
         @media (max-width: 768px) {
             .telegram-header {
@@ -764,36 +506,8 @@
                 font-size: 1.4rem;
             }
 
-            .notification-container {
-                width: 220px;
-                right: 10px;
-                top: 10px;
-            }
-
-            .notification {
-                padding: 10px;
-                gap: 10px;
-            }
-
-            .notification-avatar {
-                width: 35px;
-                height: 35px;
-            }
-
-            .notification-name {
-                font-size: 0.85rem;
-            }
-
-            .notification-text {
-                font-size: 0.75rem;
-            }
-
-            .testimonials-container {
-                grid-template-columns: 1fr;
-            }
-
-            .testimonial-timer {
-                font-size: 0.8rem;
+            .image-subtitle {
+                font-size: 0.9rem;
             }
         }
 
@@ -837,9 +551,6 @@
         </div>
     </div>
 
-    <!-- Sistema de Notificações (MENOR) -->
-    <div class="notification-container" id="notification-container"></div>
-
     <div class="telegram-container">
         <!-- Cabeçalho no estilo Telegram -->
         <div class="telegram-header">
@@ -863,6 +574,7 @@
                     <img src="10.jpg" alt="Super DJ Profissional 2026" class="dj-image" id="dj-image">
                     <div class="image-overlay">
                         <div class="image-title">COLEÇÃO COMPLETA DE DJ</div>
+                        <div class="image-subtitle">Mais de 9TB de conteúdo profissional para suas mixagens</div>
                     </div>
                 </div>
             </div>
@@ -922,7 +634,7 @@
 
             <!-- Seção de compra -->
             <div class="purchase-section">
-                <h2 class="purchase-title">ACESSO VITALÍCIO AO PACOTE COMPLETO</h2>
+                <h2 class="purchase-title">APÓS PAGAMENTO RECEBE O LINK NO SEU EMAIL!</h2>
                 <div class="price-big">R$ 10,00</div>
                 <p style="margin-bottom: 20px; font-size: 1.2rem;">Pagamento único • Acesso imediato • Sem renovação</p>
                 
@@ -931,28 +643,6 @@
                 </a>
                 
                 <p style="margin-top: 20px; opacity: 0.8;">Você será direcionado para a página de pagamento segura</p>
-            </div>
-
-            <!-- Seção de Depoimentos (SOMENTE FACEBOOK E INSTAGRAM) -->
-            <div class="testimonials-section">
-                <h2 class="testimonials-title">DEPOIMENTOS DE CLIENTES</h2>
-                
-                <div class="testimonials-container" id="testimonials-container">
-                    <!-- Depoimentos serão gerados via JavaScript -->
-                </div>
-                
-                <div class="testimonials-controls" id="testimonials-controls">
-                    <!-- Controles serão gerados via JavaScript -->
-                </div>
-                
-                <!-- Indicador de tempo para mudança -->
-                <div class="testimonial-timer">
-                    <div class="timer-text">
-                        <i class="fas fa-clock timer-icon"></i>
-                        Próximos depoimentos em: 
-                        <span class="timer-count" id="timer-count">60</span> segundos
-                    </div>
-                </div>
             </div>
 
             <!-- Rodapé -->
@@ -1095,313 +785,6 @@
             });
         }
         
-        // Dados para notificações e depoimentos
-        const maleNames = [
-            "Carlos Silva", "João Santos", "Pedro Oliveira", "Lucas Rodrigues", "Marcos Costa", 
-            "Ricardo Souza", "Fernando Almeida", "Roberto Lima", "Eduardo Pereira", "Daniel Mendes",
-            "Antônio Castro", "Rafael Cardoso", "Bruno Martins", "Paulo Ferreira", "Gustavo Nunes",
-            "Felipe Carvalho", "Alexandre Rocha", "Rodrigo Barbosa", "Leonardo Dias", "Maurício Pinto"
-        ];
-        
-        const femaleNames = [
-            "Ana Santos", "Maria Oliveira", "Juliana Silva", "Camila Costa", "Fernanda Souza",
-            "Patrícia Lima", "Amanda Rodrigues", "Bruna Almeida", "Carla Pereira", "Tatiane Mendes",
-            "Vanessa Castro", "Gabriela Cardoso", "Isabela Martins", "Larissa Ferreira", "Mariana Nunes",
-            "Beatriz Carvalho", "Letícia Rocha", "Rafaela Barbosa", "Carolina Dias", "Priscila Pinto"
-        ];
-        
-        const malePhotos = Array.from({length: 20}, (_, i) => `https://randomuser.me/api/portraits/men/${i + 1}.jpg`);
-        const femalePhotos = Array.from({length: 20}, (_, i) => `https://randomuser.me/api/portraits/women/${i + 1}.jpg`);
-        
-        const testimonials = [
-            "Material sensacional! Todas as playlists estão muito bem organizadas. Vale cada centavo!",
-            "Nunca vi um acervo tão completo. Já usei em várias festas e o público amou!",
-            "Os efeitos sonoros são profissionais mesmo. Minhas mixagens ficaram incríveis!",
-            "O pack gospel salvou meu casamento! Todos elogiaram a escolha das músicas.",
-            "A organização por pastas é perfeita. Encontro tudo rapidamente no Telegram.",
-            "Os softwares inclusos são uma mão na roda. Já economizei centenas de reais.",
-            "As atualizações constantes mantêm a biblioteca sempre atualizada. Recomendo!",
-            "Para quem está começando como DJ, esse material é essencial. Aprendi muito!",
-            "A qualidade das músicas é impressionante. Todas em alta qualidade!",
-            "Comprei há 3 meses e continuo descobrindo coisas novas. Vale muito a pena!"
-        ];
-        
-        // APENAS FACEBOOK E INSTAGRAM
-        const platforms = [
-            { name: "Facebook", icon: "fab fa-facebook facebook-icon", color: "#1877F2" },
-            { name: "Instagram", icon: "fab fa-instagram instagram-icon", color: "#E4405F" }
-        ];
-        
-        // Sistema de notificações (MENOR)
-        class NotificationSystem {
-            constructor() {
-                this.container = document.getElementById('notification-container');
-                this.notificationQueue = [];
-                this.isShowingNotification = false;
-                this.usedCombinations = new Set();
-                this.currentIndex = 0;
-                
-                this.init();
-            }
-            
-            init() {
-                // Criar primeira notificação após 5 segundos
-                setTimeout(() => this.showRandomNotification(), 5000);
-                
-                // Agendar novas notificações a cada 30 segundos
-                setInterval(() => this.showRandomNotification(), 30000);
-            }
-            
-            getRandomCombination() {
-                const isMale = Math.random() > 0.5;
-                let name, photo;
-                let attempts = 0;
-                
-                do {
-                    if (isMale) {
-                        const nameIndex = Math.floor(Math.random() * maleNames.length);
-                        const photoIndex = Math.floor(Math.random() * malePhotos.length);
-                        name = maleNames[nameIndex];
-                        photo = malePhotos[photoIndex];
-                    } else {
-                        const nameIndex = Math.floor(Math.random() * femaleNames.length);
-                        const photoIndex = Math.floor(Math.random() * femalePhotos.length);
-                        name = femaleNames[nameIndex];
-                        photo = femalePhotos[photoIndex];
-                    }
-                    
-                    attempts++;
-                    if (attempts > 50) {
-                        // Reset used combinations if we can't find a new one
-                        this.usedCombinations.clear();
-                    }
-                } while (this.usedCombinations.has(`${name}-${photo}`) && attempts < 100);
-                
-                this.usedCombinations.add(`${name}-${photo}`);
-                return { name, photo, isMale };
-            }
-            
-            showRandomNotification() {
-                const { name, photo } = this.getRandomCombination();
-                
-                const timeOptions = ["há 2 minutos", "há 5 minutos", "há 10 minutos", "há 15 minutos", "há 30 minutos"];
-                const randomTime = timeOptions[Math.floor(Math.random() * timeOptions.length)];
-                
-                const messages = [
-                    `Acabou de adquirir o Super DJ 2026!`,
-                    `Comprou o pacote completo!`,
-                    `Acaba de se tornar um DJ profissional!`,
-                    `Adquiriu acesso vitalício!`,
-                    `Comprou a biblioteca completa!`
-                ];
-                
-                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-                
-                this.createNotification(name, photo, randomMessage, randomTime);
-            }
-            
-            createNotification(name, photo, message, time) {
-                const notification = document.createElement('div');
-                notification.className = 'notification';
-                
-                notification.innerHTML = `
-                    <div class="notification-avatar">
-                        <img src="${photo}" alt="${name}" loading="lazy">
-                    </div>
-                    <div class="notification-content">
-                        <div class="notification-name">${name}</div>
-                        <div class="notification-text">${message}</div>
-                        <div class="notification-time">${time}</div>
-                    </div>
-                    <div class="notification-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                `;
-                
-                this.container.appendChild(notification);
-                
-                // Trigger animation
-                setTimeout(() => {
-                    notification.classList.add('show');
-                }, 10);
-                
-                // Remove notification after animation
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                    setTimeout(() => {
-                        if (notification.parentNode) {
-                            notification.parentNode.removeChild(notification);
-                        }
-                    }, 500);
-                }, 25000);
-            }
-        }
-        
-        // Sistema de depoimentos (MUDANÇA A CADA 1 MINUTO)
-        class TestimonialsSystem {
-            constructor() {
-                this.container = document.getElementById('testimonials-container');
-                this.controlsContainer = document.getElementById('testimonials-controls');
-                this.timerElement = document.getElementById('timer-count');
-                this.testimonials = [];
-                this.currentPage = 0;
-                this.itemsPerPage = 6;
-                this.usedTestimonialCombinations = new Set();
-                this.timer = 60; // 1 minuto em segundos
-                this.timerInterval = null;
-                
-                this.init();
-            }
-            
-            init() {
-                this.generateTestimonials();
-                this.renderTestimonials();
-                this.renderControls();
-                this.startTimer();
-                
-                // Mudar depoimentos a cada 60 segundos (1 minuto)
-                setInterval(() => this.nextPage(), 60000);
-            }
-            
-            startTimer() {
-                this.timer = 60;
-                this.updateTimer();
-                
-                this.timerInterval = setInterval(() => {
-                    this.timer--;
-                    this.updateTimer();
-                    
-                    if (this.timer <= 0) {
-                        this.timer = 60;
-                        this.updateTimer();
-                    }
-                }, 1000);
-            }
-            
-            updateTimer() {
-                if (this.timerElement) {
-                    this.timerElement.textContent = this.timer;
-                }
-            }
-            
-            getRandomTestimonialCombination() {
-                const isMale = Math.random() > 0.5;
-                let name, photo, platform;
-                let attempts = 0;
-                
-                do {
-                    if (isMale) {
-                        const nameIndex = Math.floor(Math.random() * maleNames.length);
-                        const photoIndex = Math.floor(Math.random() * malePhotos.length);
-                        name = maleNames[nameIndex];
-                        photo = malePhotos[photoIndex];
-                    } else {
-                        const nameIndex = Math.floor(Math.random() * femaleNames.length);
-                        const photoIndex = Math.floor(Math.random() * femalePhotos.length);
-                        name = femaleNames[nameIndex];
-                        photo = femalePhotos[photoIndex];
-                    }
-                    
-                    // APENAS FACEBOOK OU INSTAGRAM
-                    platform = Math.random() > 0.5 ? platforms[0] : platforms[1];
-                    attempts++;
-                    
-                    if (attempts > 50) {
-                        this.usedTestimonialCombinations.clear();
-                    }
-                } while (this.usedTestimonialCombinations.has(`${name}-${photo}`) && attempts < 100);
-                
-                this.usedTestimonialCombinations.add(`${name}-${photo}`);
-                return { name, photo, platform };
-            }
-            
-            generateTestimonials() {
-                for (let i = 0; i < 24; i++) { // Aumentado para 24 depoimentos para mais variedade
-                    const { name, photo, platform } = this.getRandomTestimonialCombination();
-                    const text = testimonials[Math.floor(Math.random() * testimonials.length)];
-                    
-                    const timeOptions = ["1 dia atrás", "2 dias atrás", "3 dias atrás", "1 semana atrás", "2 semanas atrás", "1 mês atrás", "2 meses atrás"];
-                    const time = timeOptions[Math.floor(Math.random() * timeOptions.length)];
-                    
-                    this.testimonials.push({
-                        id: i,
-                        name,
-                        photo,
-                        platform,
-                        text,
-                        time
-                    });
-                }
-            }
-            
-            renderTestimonials() {
-                this.container.innerHTML = '';
-                
-                const start = this.currentPage * this.itemsPerPage;
-                const end = start + this.itemsPerPage;
-                const currentTestimonials = this.testimonials.slice(start, end);
-                
-                currentTestimonials.forEach((testimonial, index) => {
-                    const card = document.createElement('div');
-                    card.className = `testimonial-card ${index === 0 ? 'active' : ''}`;
-                    card.style.animationDelay = `${index * 0.1}s`;
-                    
-                    card.innerHTML = `
-                        <div class="testimonial-header">
-                            <div class="testimonial-avatar">
-                                <img src="${testimonial.photo}" alt="${testimonial.name}" loading="lazy">
-                            </div>
-                            <div class="testimonial-info">
-                                <div class="testimonial-name">${testimonial.name}</div>
-                                <div class="testimonial-platform">
-                                    <i class="${testimonial.platform.icon}"></i>
-                                    <span>${testimonial.platform.name}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-text">${testimonial.text}</div>
-                        <div class="testimonial-time">${testimonial.time}</div>
-                    `;
-                    
-                    this.container.appendChild(card);
-                });
-            }
-            
-            renderControls() {
-                this.controlsContainer.innerHTML = '';
-                
-                const totalPages = Math.ceil(this.testimonials.length / this.itemsPerPage);
-                
-                for (let i = 0; i < totalPages; i++) {
-                    const dot = document.createElement('div');
-                    dot.className = `testimonial-dot ${i === this.currentPage ? 'active' : ''}`;
-                    dot.addEventListener('click', () => {
-                        this.goToPage(i);
-                    });
-                    this.controlsContainer.appendChild(dot);
-                }
-            }
-            
-            goToPage(page) {
-                this.currentPage = page;
-                this.renderTestimonials();
-                this.renderControls();
-                // Reset timer quando muda manualmente
-                this.timer = 60;
-                this.updateTimer();
-            }
-            
-            nextPage() {
-                const totalPages = Math.ceil(this.testimonials.length / this.itemsPerPage);
-                this.currentPage = (this.currentPage + 1) % totalPages;
-                this.renderTestimonials();
-                this.renderControls();
-                // Reset timer após mudança automática
-                this.timer = 60;
-                this.updateTimer();
-            }
-        }
-        
         // Inicializar quando a página carregar
         document.addEventListener('DOMContentLoaded', function() {
             initBackground();
@@ -1422,10 +805,6 @@
                 this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyYWFiZWUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZjZiMzUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPlNVUEVSIEZKIDIwMjY8L3RleHQ+PC9zdmc+';
                 this.alt = 'Super DJ Profissional 2026 - Imagem de destaque';
             };
-            
-            // Inicializar sistemas
-            new NotificationSystem();
-            new TestimonialsSystem();
             
             // Adicionar efeito de clique no botão
             document.getElementById('buy-button').addEventListener('click', function() {
