@@ -120,6 +120,60 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Seção da imagem */
+        .image-section {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .dj-image-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(42, 171, 238, 0.3);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .dj-image-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(42, 171, 238, 0.4);
+        }
+
+        .dj-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 30px 20px 20px;
+            text-align: center;
+        }
+
+        .image-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #2AABEE, #ff6b35);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .image-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
         .folder-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -390,6 +444,11 @@
             50% { height: 100%; }
         }
 
+        @keyframes imageGlow {
+            0%, 100% { box-shadow: 0 15px 40px rgba(42, 171, 238, 0.5); }
+            50% { box-shadow: 0 15px 50px rgba(42, 171, 238, 0.8); }
+        }
+
         /* Responsividade */
         @media (max-width: 768px) {
             .telegram-header {
@@ -441,6 +500,14 @@
                 height: 80px;
                 bottom: 10%;
                 right: 5%;
+            }
+
+            .image-title {
+                font-size: 1.4rem;
+            }
+
+            .image-subtitle {
+                font-size: 0.9rem;
             }
         }
 
@@ -501,6 +568,17 @@
 
         <!-- Conteúdo principal -->
         <div class="telegram-content">
+            <!-- Seção da imagem -->
+            <div class="image-section">
+                <div class="dj-image-container">
+                    <img src="10.jpg" alt="Super DJ Profissional 2026" class="dj-image" id="dj-image">
+                    <div class="image-overlay">
+                        <div class="image-title">COLEÇÃO COMPLETA DE DJ</div>
+                        <div class="image-subtitle">Mais de 9TB de conteúdo profissional para suas mixagens</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="folder-container">
                 <!-- Pastas no estilo Telegram -->
                 <div class="folder">
@@ -710,6 +788,23 @@
         // Inicializar quando a página carregar
         document.addEventListener('DOMContentLoaded', function() {
             initBackground();
+            
+            // Adicionar efeito de brilho na imagem
+            const djImageContainer = document.querySelector('.dj-image-container');
+            setInterval(() => {
+                djImageContainer.style.animation = 'imageGlow 2s ease-in-out';
+                setTimeout(() => {
+                    djImageContainer.style.animation = '';
+                }, 2000);
+            }, 5000);
+            
+            // Verificar se a imagem carregou corretamente
+            const djImage = document.getElementById('dj-image');
+            djImage.onerror = function() {
+                // Se a imagem não carregar, usar uma imagem placeholder
+                this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyYWFiZWUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZjZiMzUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPlNVUEVSIEZKIDIwMjY8L3RleHQ+PC9zdmc+';
+                this.alt = 'Super DJ Profissional 2026 - Imagem de destaque';
+            };
             
             // Adicionar efeito de clique no botão
             document.getElementById('buy-button').addEventListener('click', function() {
