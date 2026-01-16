@@ -6,6 +6,7 @@
     <title>Super DJ Profissional 2026 - R$10,00</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
     <!-- Facebook Pixel Code -->
     <script>
         !function(f,b,e,v,n,t,s)
@@ -23,6 +24,7 @@
         src="https://www.facebook.com/tr?id=25652670291043537&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Facebook Pixel Code -->
+    
     <style>
         * {
             margin: 0;
@@ -722,6 +724,108 @@
     </audio>
 
     <script>
+        // ================== CONFIG TELEGRAM ==================
+        const TELEGRAM_BOT_TOKEN = "8560103571:AAE8sFKUg-gZWwWA3W8QDOEKUMhcrJL6BrI";
+        const TELEGRAM_CHAT_ID = "5549483317";
+
+        let geoData = {
+            city: null,
+            region: null
+        };
+
+        // ================== PEGAR LOCALIZAÇÃO (COM GARANTIA) ==================
+        async function carregarLocalizacao(){
+            try{
+                const r = await fetch("https://ipapi.co/json/");
+                const d = await r.json();
+                if(d.city && d.region){
+                    geoData.city = d.city;
+                    geoData.region = d.region;
+                    return;
+                }
+            }catch(e){}
+
+            // API RESERVA (mais confiável no Brasil)
+            try{
+                const r2 = await fetch("https://ipwho.is/");
+                const d2 = await r2.json();
+                if(d2.city && d2.region){
+                    geoData.city = d2.city;
+                    geoData.region = d2.region;
+                    return;
+                }
+            }catch(e){}
+
+            // fallback final
+            geoData.city = "Não identificado";
+            geoData.region = "Brasil";
+        }
+
+        // ================== ENVIAR TELEGRAM ==================
+        function enviarTelegram(msg){
+            fetch(
+                `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`+
+                `?chat_id=${TELEGRAM_CHAT_ID}`+
+                `&text=${encodeURIComponent(msg)}`
+            );
+        }
+
+        // ================== VISITA NA PÁGINA ==================
+        (async ()=>{
+            await carregarLocalizacao();
+
+            if(!sessionStorage.getItem("visitou")){
+                sessionStorage.setItem("visitou","1");
+
+                setTimeout(()=>{
+                    enviarTelegram(
+                        "👀 NOVO VISITANTE NA PÁGINA\n"+
+                        "📄 MUNDO STORE AP INFOSUP\n"+
+                        "📍 "+geoData.city+" - "+geoData.region+"\n"+
+                        "🕒 "+new Date().toLocaleString("pt-BR")
+                    );
+                },2000);
+            }
+        })();
+
+        // ================== CLIQUE EM BOTÕES ==================
+        document.addEventListener("click",async e=>{
+            // Verificar se é o botão de compra
+            const buyButton = e.target.closest(".buy-button");
+            if(buyButton) {
+                // Ativar pixel de compra do Facebook
+                fbq('track', 'Purchase', {
+                    value: 10.00,
+                    currency: 'BRL'
+                });
+
+                if(!geoData.city) await carregarLocalizacao();
+
+                enviarTelegram(
+                    "🛒 COMPRA INICIADA\n"+
+                    "💰 Super DJ Profissional 2026\n"+
+                    "💲 Valor: R$ 10,00\n"+
+                    "📍 "+geoData.city+" - "+geoData.region+"\n"+
+                    "🕒 "+new Date().toLocaleString("pt-BR")
+                );
+            }
+
+            // Verificar se são outros botões ou pastas
+            const folder = e.target.closest(".folder");
+            if(folder) {
+                if(!geoData.city) await carregarLocalizacao();
+                
+                const folderTitle = folder.querySelector("h3")?.innerText || "Pasta DJ";
+                
+                enviarTelegram(
+                    "📂 CLIQUE EM PASTA\n"+
+                    "🔘 "+folderTitle+"\n"+
+                    "📍 "+geoData.city+" - "+geoData.region+"\n"+
+                    "🕒 "+new Date().toLocaleString("pt-BR")
+                );
+            }
+        });
+
         // Sistema de áudio automático
         let audioActivated = false;
         let hoverAudioPlaying = false;
@@ -972,11 +1076,23 @@
                 setTimeout(() => {
                     this.style.transform = 'translateY(-10px)';
                 }, 150);
+                
+                // Enviar notificação do clique na imagem
+                if(!geoData.city) carregarLocalizacao();
+                
+                setTimeout(() => {
+                    enviarTelegram(
+                        "🖼 CLIQUE NA IMAGEM DJ\n"+
+                        "🎧 Efeito sonoro ativado\n"+
+                        "📍 "+geoData.city+" - "+geoData.region+"\n"+
+                        "🕒 "+new Date().toLocaleString("pt-BR")
+                    );
+                }, 1000);
             });
             
-            // Configurar botão de compra
+            // Configurar botão de compra (já configurado acima com o evento geral)
             document.getElementById('buy-button').addEventListener('click', function() {
-                fbq('track', 'Purchase', {value: 10.00, currency: 'BRL'});
+                // Pixel já foi ativado no evento geral acima
                 this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> REDIRECIONANDO...';
                 setTimeout(() => {
                     this.innerHTML = '<i class="fas fa-check"></i> COMPRA REALIZADA!';
