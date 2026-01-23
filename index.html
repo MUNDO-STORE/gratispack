@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Super DJ Profissional 2026 - Biblioteca completa para DJs no Telegram">
-    <title>Super DJ Profissional 2026 - R$10,00</title>
+    <title>Super DJ Profissional 2026 - R$15,00</title>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
@@ -662,7 +662,7 @@
                 <p>Biblioteca completa para DJs dentro do Telegram</p>
             </div>
             <div class="price-tag">
-                R$10,00
+                R$15,00
             </div>
         </div>
 
@@ -740,14 +740,14 @@
             <!-- Seção de compra -->
             <div class="purchase-section">
                 <h2 class="purchase-title">ACESSO ENVIADO NO SEU EMAIL APÓS PAGAMENTO!</h2>
-                <div class="price-big">R$ 10,00</div>
+                <div class="price-big">R$ 15,00</div>
                 <p style="margin-bottom: 20px; font-size: 1.1rem;">Pagamento único • Acesso imediato • Sem renovação</p>
                 
-                <a href="https://mundodj.erby.site/product/17678367624464724589600001669" class="buy-button" id="buy-button">
+                <a href="https://mundodj.erby.site/product/1767745756195430641776341505" class="buy-button" id="buy-button">
                     <i class="fas fa-shopping-cart"></i> CLIQUE PARA COMPRAR
                 </a>
 
-                <a href="https://wa.link/tn8g66" class="whatsapp-button" id="whatsapp-button">
+                <a href="https://wa.link/y3rgwd" class="whatsapp-button" id="whatsapp-button">
                     <i class="fab fa-whatsapp"></i> COMPRAR PELO WHATSAPP
                 </a>
                 
@@ -1014,7 +1014,7 @@
                 buyButton.addEventListener('click', function(e) {
                     // Track Facebook Pixel
                     try {
-                        fbq('track', 'Purchase', {value: 10.00, currency: 'BRL'});
+                        fbq('track', 'Purchase', {value: 15.00, currency: 'BRL'});
                     } catch (err) {
                         console.log('Facebook Pixel error:', err);
                     }
@@ -1242,17 +1242,19 @@
                                 elemento.href.includes('cart') ||
                                 elemento.href.includes('payment') ||
                                 elemento.href.includes('whatsapp') ||
-                                elemento.href.includes('wa.link'))) {
+                                elemento.href.includes('wa.link') ||
+                                elemento.href.includes('mundodj.erby.site'))) {
           enviarTelegram(
             `🖱️ <b>CLIQUE IMPORTANTE DETECTADO</b>\n` +
             `🔗 ${elemento.innerText.substring(0, 50)}\n` +
             `📍 ${userData.city} - ${userData.region} - ${userData.country}\n` +
             `👤 Gênero: ${userData.gender}\n` +
             `🕒 ${new Date().toLocaleString('pt-BR')}\n` +
+            `💰 Valor: R$ 15,00\n` +
             `🌐 IP: ${userData.ip}\n` +
             `📡 ISP: ${userData.isp}\n` +
             `🔗 URL: ${elemento.href.substring(0, 100)}`,
-            "CLIQUE"
+            "COMPRA"
           );
         }
         
@@ -1288,6 +1290,7 @@
           `📍 ${userData.city} - ${userData.region} - ${userData.country}\n` +
           `👤 Gênero: ${userData.gender}\n` +
           `🕒 ${new Date().toLocaleString('pt-BR')}\n` +
+          `💰 Valor: R$ 15,00\n` +
           `📊 Campos: ${campos.join(' | ')}\n` +
           `🌐 IP: ${userData.ip}`,
           "FORMULARIO"
@@ -1303,6 +1306,7 @@
             `📄 ${elemento.href.split('/').pop()}\n` +
             `📍 ${userData.city} - ${userData.region}\n` +
             `👤 ${userData.gender}\n` +
+            `💰 Valor: R$ 15,00\n` +
             `🕒 ${new Date().toLocaleString('pt-BR')}\n` +
             `🔗 ${elemento.href.substring(0, 100)}`,
             "DOWNLOAD"
@@ -1318,6 +1322,7 @@
             `📄 Para: ${window.location.href.substring(0, 100)}\n` +
             `📍 ${userData.city} - ${userData.region}\n` +
             `👤 ${userData.gender}\n` +
+            `💰 Valor: R$ 15,00\n` +
             `🕒 ${new Date().toLocaleString('pt-BR')}`,
             "INFO"
           );
@@ -1336,6 +1341,7 @@
             `📊 <b>RELATÓRIO DE ATIVIDADES</b>\n` +
             `📍 ${userData.city} - ${userData.region} - ${userData.country}\n` +
             `👤 Gênero: ${userData.gender}\n` +
+            `💰 Valor Produto: R$ 15,00\n` +
             `📈 Últimas atividades (últimos 3min):\n${resumo}\n` +
             `🌐 IP: ${userData.ip}\n` +
             `📡 ISP: ${userData.isp}`,
@@ -1368,6 +1374,7 @@
             `• Estado: ${userData.region} (${userData.region_code})\n` +
             `• Cidade: ${userData.city}\n` +
             `• Gênero: ${userData.gender}\n\n` +
+            `💰 <b>Produto:</b> Super DJ Profissional 2026 - R$ 15,00\n\n` +
             `🌐 <b>Informações de Rede:</b>\n` +
             `• IP: ${userData.ip}\n` +
             `• ISP: ${userData.isp}\n\n` +
@@ -1393,6 +1400,7 @@
             text: `🚪 <b>USUÁRIO SAINDO DA PÁGINA</b>\n` +
                   `📍 ${userData.city} - ${userData.region}\n` +
                   `👤 ${userData.gender}\n` +
+                  `💰 Valor Produto: R$ 15,00\n` +
                   `⏱️ Tempo: ${tempoNaPagina}s\n` +
                   `🌐 IP: ${userData.ip}\n` +
                   `🔗 ${window.location.href.substring(0, 100)}`,
